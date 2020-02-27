@@ -8,10 +8,11 @@ import com.codeclan.example.BookingSystem.repositories.CourseRepository.CourseRe
 import com.codeclan.example.BookingSystem.repositories.CustomerRepository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DataLoader {
+public class DataLoader  implements ApplicationRunner {
 
     @Autowired
     BookingRepository bookingRepository;
@@ -52,6 +53,8 @@ public class DataLoader {
 
         Booking booking4 = new Booking("12/03/2020", course2, customer3);
         bookingRepository.save(booking4);
+
+
 
     }
 

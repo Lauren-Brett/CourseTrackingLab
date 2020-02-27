@@ -22,8 +22,8 @@ public class Course {
     @Column(name = "rating")
     private int rating;
 
-    @OneToMany(mappedBy = "courses")
-    private  List<Booking> bookings;
+    @OneToMany(mappedBy = "course")
+    private List<Booking> bookings;
 
     public Course(String name, String town, int rating) {
         this.name = name;
@@ -74,4 +74,6 @@ public class Course {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
+
 }

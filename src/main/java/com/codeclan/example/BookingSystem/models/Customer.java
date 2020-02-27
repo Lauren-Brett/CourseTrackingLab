@@ -21,7 +21,7 @@ public class Customer {
     @Column(name = "age")
     private int age;
 
-    @OneToMany(mappedBy = "customers")
+    @OneToMany(mappedBy = "customer")
     private List<Booking> bookings;
 
     public Customer(String name, String town, int age) {
