@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CourseRepositoryCustom {
 
-
+     List<Course> getAllCoursesForGivenCustomer(Long id);
 }

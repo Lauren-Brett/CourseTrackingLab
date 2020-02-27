@@ -18,6 +18,30 @@ public class CourseRepositoryImpl implements CourseRepositoryCustom {
     @Autowired
     EntityManager entityManager;
 
+    @Transactional
+    public List<Course> getAllCoursesForGivenCustomer(Long id){
+        List<Course> result = null;
+        Session session = entityManager.unwrap(Session.class);
+
+        try{
+            Criteria criteria = session.createCriteria(Course.class);
+
+            criteria.createAlias("bookings", "booking");
+            criteria.createAlias("booking.customer", "customer");
+
+            criteria.add(Restrictions.eq("customer.id", id));
+
+            result = criteria.list();
+        }
+        catch(HibernateException ex) {
+            ex.printStackTrace();
+        }
+
+        return result;
+
+
+    }
+
 
 
 }

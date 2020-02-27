@@ -19,6 +19,11 @@ public class CourseController {
 
 
 
+    @GetMapping(value = "/getAllCoursesForGivenCustomer")
+        public List<Course> getAllCoursesForGivenCustomer(Long id){
+        return courseRepository.getAllCoursesForGivenCustomer(id);
+    }
+
 
 
 
