@@ -1,6 +1,7 @@
 package com.codeclan.example.BookingSystem.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,12 +21,14 @@ public class Customer {
     @Column(name = "age")
     private int age;
 
+    @OneToMany(mappedBy = "customers")
     private List<Booking> bookings;
 
     public Customer(String name, String town, int age) {
         this.name = name;
         this.town = town;
         this.age = age;
+        this.bookings = new ArrayList<>();
     }
 
     public Customer() {

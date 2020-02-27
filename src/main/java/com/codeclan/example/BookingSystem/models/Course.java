@@ -2,6 +2,7 @@ package com.codeclan.example.BookingSystem.models;
 
 import javax.persistence.*;
 import java.security.acl.LastOwnerException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,12 +22,14 @@ public class Course {
     @Column(name = "rating")
     private int rating;
 
-    private List<Booking> bookings;
+    @OneToMany(mappedBy = "courses")
+    private  List<Booking> bookings;
 
     public Course(String name, String town, int rating) {
         this.name = name;
         this.town = town;
         this.rating = rating;
+        this.bookings = new ArrayList<>();
     }
 
     public Course() {

@@ -41,16 +41,16 @@ public class DataLoader {
         Course course2 = new Course("Java", "London", 3 );
         courseRepository.save(course2);
 
-        Booking booking1 = new Booking("13/06/2021", customer1, course1);
+        Booking booking1 = new Booking("13/06/2021", course1, customer1);
         bookingRepository.save(booking1);
 
-        Booking booking2 = new Booking("27/08/3031", customer2, course1);
+        Booking booking2 = new Booking("27/08/3031", course1, customer2);
         bookingRepository.save(booking2);
 
-        Booking booking3 = new Booking("12/03/2020", customer2, course2);
+        Booking booking3 = new Booking("12/03/2020", course2, customer2);
         bookingRepository.save(booking3);
 
-        Booking booking4 = new Booking("12/03/2020", customer3, course2);
+        Booking booking4 = new Booking("12/03/2020", course2, customer3);
         bookingRepository.save(booking4);
 
     }
