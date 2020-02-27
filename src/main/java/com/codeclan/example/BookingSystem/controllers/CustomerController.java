@@ -20,4 +20,14 @@ public class CustomerController {
     public List<Customer> getAllCustomersByCourse(@RequestParam Long id){
         return customerRepository.getAllCustomersByCourse(id);
     }
+
+    @GetMapping(value = "/getAllCustomersByTownAndCourse")
+    public List<Customer> getAllCustomersByTownAndCourse(@RequestParam String town, @RequestParam String name) {
+        return customerRepository.getAllCustomersByTownAndCourse(town, name);
+    }
+
+    @GetMapping(value = "/getAllCustomersOverAgeByTownAndCourse")
+    public List<Customer> getAllCustomersOverAgeByTownAndCourse(@RequestParam int age, @RequestParam String town, @RequestParam String name) {
+        return customerRepository.getAllCustomersOverAgeByTownAndCourse(age,town, name);
+    }
 }

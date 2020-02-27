@@ -14,19 +14,13 @@ import java.util.List;
 
 public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
 
-
-
     @Autowired
     EntityManager entityManager;
-
-
-
 
     @Transactional
     public List<Customer> getAllCustomersByCourse(Long id){
         List<Customer> result = null;
         Session session = entityManager.unwrap(Session.class);
-
         try {
             Criteria criteria = session.createCriteria(Customer.class);
 
@@ -40,8 +34,50 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
         catch(HibernateException ex) {
             ex.printStackTrace();
         }
-
         return result;
-
     }
+
+    @Transactional
+    public List<Customer> getAllCustomersByTownAndCourse(String town, String name) {
+        List<Customer> result = null;
+        Session session = entityManager.unwrap(Session.class);
+        try {
+            Criteria criteria = session.createCriteria(Customer.class);
+
+            criteria.createAlias("bookings", "booking");
+            criteria.createAlias("booking.course", "course");
+
+            criteria.add(Restrictions.eq("course.town", town));
+            criteria.add(Restrictions.eq("course.name", name));
+
+            result = criteria.list();
+        }
+        catch(HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    @Transactional
+    public List<Customer> getAllCustomersOverAgeByTownAndCourse(int age, String town, String name) {
+        List<Customer> result = null;
+        Session session = entityManager.unwrap(Session.class);
+        try {
+
+            Criteria criteria = session.createCriteria(Customer.class);
+            criteria.createAlias("bookings", "booking");
+            criteria.createAlias("booking.course", "course");
+
+            criteria.add(Restrictions.gt("age", age));
+            criteria.add(Restrictions.eq("course.town", town));
+            criteria.add(Restrictions.eq("course.name", name));
+
+            result = criteria.list();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+
 }
